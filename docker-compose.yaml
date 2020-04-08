@@ -13,7 +13,7 @@ services:
   depends_on:
     - mongodb
   volumes:
-    - ~/.m2/repository/ie/daithi/quizmaster-api/0.0.1-SNAPSHOT/quizmaster-api-0.0.1-SNAPSHOT.jar:/opt/app/app.jar
+    - ~/.m2/repository/ie/daithi/quizmaster/quizmaster-api/0.0.1-SNAPSHOT/quizmaster-api-0.0.1-SNAPSHOT.jar:/opt/app/app.jar
   environment: 
     - MONGODB_HOSTNAME=mongodb
     - MONGODB_PORT=27017
