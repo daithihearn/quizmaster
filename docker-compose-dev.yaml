@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+
+  api:
+    build:
+        context: ./quizmaster-api
+    restart: always
+    command: -jar -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:5005 ./app.jar
+  ports: 
+    - "8080:8080"
+    - "5005:5005"
+  depends_on:
+    - mongodb
+  volumes:
+    - ~/.m2/repository/ie/daithi/quizmaster-api/0.0.1-SNAPSHOT/quizmaster-api-0.0.1-SNAPSHOT.jar:/opt/app/app.jar
+  environment: 
+    - MONGODB_HOSTNAME=mongodb
+    - MONGODB_PORT=27017
+    - MONGODB_DB_NAME=quizmaster
+
+  frontend:
+    build:
+      context: ./quizmaster-frontend
+      args:
+        - NODE_ENV=development
+    ports:
+      - "80:80"
+    volumes:
+      - frontend_node_modules:/opt/app/node_modules
+      - ./quizmaster-frontend:/opt/app
+    environment:
+      - REACT_APP_API_URL=http://localhost:8080
+      - PORT=80
+
+  mongodb:
+    image: mongo:4.0-xenial
+    expose:
+      - 27017
+  
+volumes:
+  frontend_node_modules:

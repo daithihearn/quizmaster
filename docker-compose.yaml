@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  api:
+    build:
+        context: ./quizmaster-api
+    restart: always
+    command: -jar ./app.jar
+  ports: 
+    - "8080:8080"
+    - "5005:5005"
+  depends_on:
+    - mongodb
+  volumes:
+    - ~/.m2/repository/ie/daithi/quizmaster-api/0.0.1-SNAPSHOT/quizmaster-api-0.0.1-SNAPSHOT.jar:/opt/app/app.jar
+  environment: 
+    - MONGODB_HOSTNAME=mongodb
+    - MONGODB_PORT=27017
+    - MONGODB_DB_NAME=quizmaster
+
+  mongodb:
+    image: mongo:4.0-xenial
+    expose:
+      - 27017
