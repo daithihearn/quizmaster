@@ -1,0 +1,6 @@
+[submodule "api"]
+	path = quizmaster-api
+	url = git@github.com:daithihearn/quizmaster-api.git
+[submodule "frontend"]
+	path = quizmaster-frontend
+	url = git@github.com:daithihearn/quizmaster-frontend.git
