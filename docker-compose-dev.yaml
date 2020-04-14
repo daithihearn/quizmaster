@@ -4,21 +4,26 @@ services:
 
   api:
     build:
-        context: ./quizmaster-api
+      context: ./quizmaster-api
     restart: always
     command: -jar -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:5005 ./app.jar
-  ports: 
-    - "8080:8080"
-    - "5005:5005"
-  depends_on:
-    - mongodb
-  volumes:
-    - ~/.m2/repository/ie/daithi/quizmaster/quizmaster-api/0.0.1-SNAPSHOT/quizmaster-api-0.0.1-SNAPSHOT.jar:/opt/app/app.jar
-  environment: 
-    - MONGODB_URI=mongodb://mongodb:27017
-    - MONGODB_DATABASE_NAME=quizmaster
-    - PASSWORD_ENCODER_SEED=password
-    - JWT_SECRET=password
+    ports: 
+      - 8080:8080
+      - 5005:5005
+    depends_on:
+      - mongodb
+    volumes:
+      - ~/.m2/repository/ie/daithi/quizmaster/quizmaster-api/0.0.1-SNAPSHOT/quizmaster-api-0.0.1-SNAPSHOT.jar:/opt/app/app.jar
+    environment: 
+      - MONGODB_URI=mongodb://mongodb:27017
+      - MONGODB_DATABASE_NAME=quizmaster
+      - PASSWORD_ENCODER_SEED=password
+      - JWT_SECRET=password
+      - SPRING_PROFILES=primary,dev
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=password
+      - SENDGRID_API_KEY=YOUR API KEY GOES HERE
+      - PLAYER_LOGIN_URL=http://localhost:8080
 
   frontend:
     build:
@@ -26,7 +31,7 @@ services:
       args:
         - NODE_ENV=development
     ports:
-      - "80:80"
+      - 2000:80
     volumes:
       - frontend_node_modules:/opt/app/node_modules
       - ./quizmaster-frontend:/opt/app

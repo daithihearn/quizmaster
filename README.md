@@ -14,11 +14,11 @@ NPM must be installed to build the frontend webjar. You can run in frontend dev 
 # Setup
 First you must initialise the submodules by running:
 
-`docker submodule init`
+`git submodule init`
 
 Followed by:
 
-`docker submodule update`
+`git submodule update`
 
 This will initialise and then download the submodules. Generally it will pull a commit hash rather than a branch. You can switch to the default branch by:
 
