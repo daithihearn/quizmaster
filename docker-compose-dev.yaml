@@ -6,14 +6,10 @@ services:
     build:
       context: ./quizmaster-api
     restart: always
-    command: -jar -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:5005 ./app.jar
     ports: 
       - 8080:8080
-      - 5005:5005
     depends_on:
       - mongodb
-    volumes:
-      - ~/.m2/repository/ie/daithi/quizmaster/quizmaster-api/0.0.1-SNAPSHOT/quizmaster-api-0.0.1-SNAPSHOT.jar:/opt/app/app.jar
     environment: 
       - MONGODB_URI=mongodb://mongodb:27017
       - MONGODB_DATABASE_NAME=quizmaster
