@@ -23,7 +23,7 @@ services:
       - CORS_WHITELIST=
       - SCORING_THRESHOLD_LOWER=0f
       - SCORING_THRESHOLD_UPPER=2.4f
-      - CLOUDINARY_URL=cloudinary://655646195164233:Y4MNdAwVuL7CSioiVNQFHnDgla8@hjz4isyhw
+      - CLOUDINARY_URL=YOUR URL GOES HERE
 
   mongodb:
     image: mongo:4.0-xenial
