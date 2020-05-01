@@ -19,9 +19,19 @@ services:
       - ADMIN_USERNAME=admin
       - ADMIN_PASSWORD=password
       - SENDGRID_API_KEY=YOUR API KEY GOES HERE
-      - PLAYER_LOGIN_URL=http://localhost:8080
+      - PLAYER_LOGIN_URL=http://localhost:8080/#/autologin
+      - CORS_WHITELIST=
+      - SCORING_THRESHOLD_LOWER=0f
+      - SCORING_THRESHOLD_UPPER=2.4f
+      - CLOUDINARY_URL=cloudinary://655646195164233:Y4MNdAwVuL7CSioiVNQFHnDgla8@hjz4isyhw
 
   mongodb:
     image: mongo:4.0-xenial
+    volumes:
+      - mongo_data:/data/db
     expose:
       - 27017
+
+volumes:
+  mongo_data:
+    driver: local
