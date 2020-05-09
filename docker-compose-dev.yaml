@@ -24,7 +24,6 @@ services:
       - SCORING_THRESHOLD_LOWER=0f
       - SCORING_THRESHOLD_UPPER=2.4f
       - CLOUDINARY_URL=YOUR URL GOES HERE
-      - REDIS_URL=redis://h:password@redis:6379
 
 
   frontend:
@@ -39,18 +38,6 @@ services:
       - REACT_APP_API_URL=http://localhost:8080
       - PORT=80
       - NODE_ENV=development
-
-  redis:
-    image: redis:alpine
-    command: redis-server --requirepass password
-    ports:
-      - "6379:6379"
-    volumes:
-      - $PWD/redis-data:/var/lib/redis
-      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
-    environment:
-      - REDIS_REPLICATION_MODE=master
-
 
   mongodb:
     image: mongo:4.0-xenial
