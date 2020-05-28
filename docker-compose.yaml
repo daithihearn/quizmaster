@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 services:
 
@@ -19,19 +19,36 @@ services:
       - ADMIN_USERNAME=admin
       - ADMIN_PASSWORD=password
       - SENDGRID_API_KEY=YOUR API KEY GOES HERE
-      - PLAYER_LOGIN_URL=http://localhost:8080/#/autologin
-      - CORS_WHITELIST=
+      - PLAYER_LOGIN_URL=http://localhost:3000/#/autologin
+      - CORS_WHITELIST=http://localhost:3000
       - SCORING_THRESHOLD_LOWER=0f
       - SCORING_THRESHOLD_UPPER=2.4f
       - CLOUDINARY_URL=YOUR URL GOES HERE
+    networks:
+      - quizmaster
+
+  frontend:
+    image: localhost:5000/quizmaster-frontend:latest
+    restart: always
+    ports:
+      - 3000:5000
+    networks:
+      - quizmaster
 
   mongodb:
-    image: mongo:4.0-xenial
+    image: mongo:4.2
     volumes:
       - mongo_data:/data/db
     expose:
       - 27017
+    networks:
+      - quizmaster
 
 volumes:
   mongo_data:
     driver: local
+
+networks:
+  quizmaster:
+    driver: bridge
+    name: quizmaster
