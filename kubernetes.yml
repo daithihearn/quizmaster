@@ -39,20 +39,16 @@ spec:
             value: mongodb://mongodb:27017
           - name: MONGODB_DATABASE_NAME
             value: quizmaster
-          - name: PASSWORD_ENCODER_SEED
-            value: password
-          - name: JWT_SECRET
-            value: password
           - name: SPRING_PROFILES
             value: primary,dev
-          - name: ADMIN_USERNAME
-            value: admin
-          - name: ADMIN_PASSWORD
-            value: password
           - name: SENDGRID_API_KEY
             value: YOUR API KEY GOES HERE
           - name: PLAYER_LOGIN_URL
             value: http://localhost:30001
+          - name: AUTH0_AUDIENCE
+            value: http://localhost:8080
+          - name: AUTH0_CLIENT_ID
+            value: Issuer URI Goes here
 
 ---
 apiVersion: apps/v1
