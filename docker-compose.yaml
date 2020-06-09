@@ -23,6 +23,8 @@ services:
       - SCORING_THRESHOLD_LOWER=0f
       - SCORING_THRESHOLD_UPPER=2.4f
       - CLOUDINARY_URL=YOUR URL GOES HERE
+      - AUTH0_AUDIENCE=http://localhost:8080
+      - JWT_ISSUER_URI=Issuer URI Goes here
     networks:
       - quizmaster
 
